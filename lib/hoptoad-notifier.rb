@@ -23,8 +23,12 @@ module Rack
         'backtrace' => e.backtrace,
         'environment' => ENV.to_hash.merge( Ramaze::Current.request.env ),
         'params' => Ramaze::Current.request.params,
-        #'session' => s,
+        'session' => {
+          'key' => s.session_id,
+          'data' => s,
+        },
       }
+      #$stderr.puts "notice_options: #{notice_options.inspect}"
       send_to_hoptoad(
         'notice' => default_notice_options.merge( notice_options )
       )
