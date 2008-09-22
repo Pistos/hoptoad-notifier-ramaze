@@ -31,7 +31,7 @@ module Rack
       send_to_hoptoad(
         'notice' => default_notice_options.merge( notice_options )
       )
-      raise e
+      Ramaze::Dispatcher.error e
     end
     
     def default_notice_options
