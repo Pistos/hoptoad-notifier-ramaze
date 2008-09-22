@@ -14,9 +14,7 @@ module Rack
     def call( env )
       @app.call env
     rescue => e
-      $stderr.puts "hoptoad rescued!"
       s = Ramaze::Session.current
-      $stderr.puts "s: #{s.class}"
       notice_options = {
         'error_class' => e.class.name,
         'error_message' => "#{e.class.name}: #{e.message}",
@@ -28,7 +26,6 @@ module Rack
           'data' => s,
         },
       }
-      #$stderr.puts "notice_options: #{notice_options.inspect}"
       send_to_hoptoad(
         'notice' => default_notice_options.merge( notice_options )
       )
