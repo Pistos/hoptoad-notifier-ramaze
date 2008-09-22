@@ -1,5 +1,6 @@
 require 'net/http'
 require 'yaml'
+require __DIR__/'hash'
 
 # Setup your project's API key prior to use:
 #   Rack::HoptoadNotifier.trait[ :api_key ] = 'your-key-here'
@@ -23,7 +24,7 @@ module Rack
         'params' => Ramaze::Current.request.params,
         'session' => {
           'key' => s.session_id,
-          'data' => s,
+          'data' => s.to_h,
         },
       }
       send_to_hoptoad(
