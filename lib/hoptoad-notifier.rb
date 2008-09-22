@@ -15,16 +15,15 @@ module Rack
       @app.call env
     rescue => e
       $stderr.puts "hoptoad rescued!"
-      request_params = Ramaze::Current.request.params
       s = Ramaze::Session.current
-      $stderr.puts "s: #{s.inspect}"
+      $stderr.puts "s: #{s.class}"
       notice_options = {
         'error_class' => e.class.name,
         'error_message' => "#{e.class.name}: #{e.message}",
         'backtrace' => e.backtrace,
         'environment' => ENV.to_hash,
         # TODO: merge request.env
-        'params' => request_params,
+        'params' => Ramaze::Current.request.params,
         #'session' => s,
       }
       send_to_hoptoad(
