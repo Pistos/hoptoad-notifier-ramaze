@@ -5,24 +5,6 @@ require 'yaml'
 #   Rack::HoptoadNotifier.trait[ :api_key ] = 'your-key-here'
 
 module Rack
-  class Excp
-    def initialize(app)
-      @app = app
-    end
-    
-    def call(env)
-      @app.call(env)
-    rescue => ex
-      puts " !!!!!! ".center(80, '-')
-      puts ex
-      puts " !!!!!! ".center(80, '-')
-      raise ex
-    end
-  end
-end
-
-
-module Rack
   class HoptoadNotifier
     
     def initialize( app )
@@ -95,6 +77,4 @@ end
 mw = Ramaze::Adapter::MIDDLEWARE
 current_index = mw.index( Ramaze::Current )
 mw.insert( current_index + 1, Rack::HoptoadNotifier )
-#Ramaze::Adapter::MIDDLEWARE[-2,0] = Rack::HoptoadNotifier
-#Ramaze::Adapter::MIDDLEWARE[-2,0] = Rack::Excp
 
