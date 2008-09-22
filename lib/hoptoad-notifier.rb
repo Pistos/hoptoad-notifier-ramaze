@@ -1,5 +1,6 @@
 require 'net/http'
 require 'yaml'
+require 'ramaze'
 require __DIR__/'hash'
 
 # Setup your project's API key prior to use:
@@ -58,15 +59,15 @@ module Rack
         response = begin
           http.post( url.path, data.to_yaml, headers )
         rescue TimeoutError => e
-          puts "Timeout while contacting the Hoptoad server."
+          Ramaze::Log.error "Timeout while contacting the Hoptoad server."
           nil
         end
         
         case response
         when Net::HTTPSuccess
-          puts "Hoptoad Success: #{response.class}"
+          Ramaze::Log.debug "Hoptoad Success: #{response.class}"
         else
-          puts "Hoptoad Failure: #{response.class}\n#{response.body if response.respond_to? :body}"
+          Ramaze::Log.error "Hoptoad Failure: #{response.class}\n#{response.body if response.respond_to? :body}"
         end
       end            
     end
