@@ -22,7 +22,6 @@ module Rack
         'error_message' => "#{e.class.name}: #{e.message}",
         'backtrace' => e.backtrace,
         'environment' => ENV.to_hash.merge( Ramaze::Current.request.env ),
-        # TODO: merge request.env
         'params' => Ramaze::Current.request.params,
         #'session' => s,
       }
