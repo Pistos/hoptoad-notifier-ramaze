@@ -22,7 +22,7 @@ module Ramaze
         send_to_hoptoad(
           'notice' => {
             'api_key'       => api_key || Ramaze::Helper::HoptoadNotifier.trait[ :api_key ],
-            'request'       => {},
+            'request'       => req.params,
             'error_class'   => error.class.name,
             'error_message' => "#{error.class.name}: #{error.message}",
             'backtrace'     => error.backtrace,
