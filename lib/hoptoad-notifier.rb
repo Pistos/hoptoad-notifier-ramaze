@@ -22,12 +22,11 @@ module Ramaze
         send_to_hoptoad(
           'notice' => {
             'api_key'       => api_key || Ramaze::Helper::HoptoadNotifier.trait[ :api_key ],
-            'request'       => req.params,
+            'request'       => { 'params' => req.params },
             'error_class'   => error.class.name,
             'error_message' => "#{error.class.name}: #{error.message}",
             'backtrace'     => error.backtrace,
             'environment'   => ENV.to_hash.merge( req.env ),
-            'params'        => req.params,
             'session' => {
               'key' => session.session_id,
               'data' => session.to_h,
