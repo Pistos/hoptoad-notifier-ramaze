@@ -3,7 +3,7 @@ module Ramaze
     class Hash
       # So we can give the session hash data to Hoptoad.
       def to_h
-        @hash
+        @hash.dup
       end
     end
   end
