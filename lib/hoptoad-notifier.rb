@@ -56,9 +56,12 @@ module Ramaze
         
         case response
         when Net::HTTPSuccess
-          Ramaze::Log.debug "Hoptoad Success: #{response.class}"
+          Ramaze::Log.debug "Hoptoad notification sent."
         else
-          Ramaze::Log.error "Hoptoad Failure: #{response.class}\n#{response.body if response.respond_to? :body}"
+          Ramaze::Log.error "Hoptoad notification failure: #{response.class}"
+          if response.respond_to? :body
+            Ramaze::Log.error response.body
+          end
         end
       end            
     end
