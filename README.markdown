@@ -7,7 +7,7 @@ gem install hoptoad-notifier-ramaze --source http://purepistos.net
 In your Ramaze application code, put these two lines somewhere before Ramaze.start:
 
   require 'hoptoad-notifier'
-  Rack::HoptoadNotifier.trait[ :api_key ] = 'your-projects-api-key'
+  Ramaze::Helper::HoptoadNotifier.trait[ :api_key ] = 'your-projects-api-key'
 
 ### Source
 
