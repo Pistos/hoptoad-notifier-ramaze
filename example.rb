@@ -8,9 +8,10 @@ require './lib/hoptoad-notifier'
 
 # Set your project's API key here.
 # Note that this is not your user API key.
-Rack::HoptoadNotifier.trait[ :api_key ] = 'your-api-key-here'
+Ramaze::Helper::HoptoadNotifier.trait[ :api_key ] = '01234567890abcdef01234567890abcd'
 
 class MainController < Ramaze::Controller
+  
   def index
     session[ :user ] = 'pistos'
     "Hello, World!"
