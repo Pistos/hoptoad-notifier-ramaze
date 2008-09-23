@@ -74,3 +74,4 @@ module Ramaze
   end
 end
 
+Ramaze::Log.info "Ramaze Hoptoad Notifier version 0.6.0 loaded."
