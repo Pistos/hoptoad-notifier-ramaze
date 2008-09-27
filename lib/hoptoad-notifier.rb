@@ -5,7 +5,7 @@ require 'ramaze/helper/aspect'
 require __DIR__/'hash'
 
 # Setup your project's API key prior to use:
-#   Rack::HoptoadNotifier.trait[ :api_key ] = 'your-key-here'
+#   Ramaze::Helper::HoptoadNotifier.trait[ :api_key ] = 'your-key-here'
 
 module Ramaze
   module Helper::HoptoadNotifier
@@ -22,7 +22,7 @@ module Ramaze
         send_to_hoptoad(
           'notice' => {
             'api_key'       => api_key || Ramaze::Helper::HoptoadNotifier.trait[ :api_key ],
-            'request'       => { 'params' => req.params },
+            'request'       => { 'params' => req.params, },
             'error_class'   => error.class.name,
             'error_message' => "#{error.class.name}: #{error.message}",
             'backtrace'     => error.backtrace,
@@ -74,4 +74,4 @@ module Ramaze
   end
 end
 
-Ramaze::Log.info "Ramaze Hoptoad Notifier version 0.6.0 loaded."
+Ramaze::Log.info "Ramaze Hoptoad Notifier version 0.6.1 loaded."
