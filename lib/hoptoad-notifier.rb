@@ -2,7 +2,7 @@ require 'net/http'
 require 'yaml'
 require 'ramaze'
 require 'ramaze/helper/aspect'
-require __DIR__/'hash'
+require File.join(__DIR__, 'hash')
 
 # Setup your project's API key prior to use:
 #   Ramaze::Helper::HoptoadNotifier.trait[ :api_key ] = 'your-key-here'
